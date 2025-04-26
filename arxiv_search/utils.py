@@ -10,17 +10,61 @@ from typing import Any, Dict, List, Optional
 
 def get_api_key() -> str:
     """
-    Get the Google API key from environment variable.
+    Get the Google API key from environment variable or .env file.
     
     Returns:
         The Google API key
     """
+    # Check environment variable first
     api_key = os.environ.get("GOOGLE_API_KEY")
+    
+    # If not found, try loading from .env file
+    if not api_key:
+        try:
+            # Try to load from .env file
+            from dotenv import load_dotenv
+            
+            # Look for .env file in the current directory and one level up
+            if os.path.exists(".env"):
+                load_dotenv(".env")
+            elif os.path.exists("../.env"):
+                load_dotenv("../.env")
+            
+            # Try getting the API key again after loading .env
+            api_key = os.environ.get("GOOGLE_API_KEY")
+        except ImportError:
+            # python-dotenv not installed
+            pass
+    
+    # If still not found, check for a config.ini file
+    if not api_key:
+        try:
+            import configparser
+            config = configparser.ConfigParser()
+            
+            # Look for config.ini in current directory and one level up
+            if os.path.exists("config.ini"):
+                config.read("config.ini")
+                if "DEFAULT" in config and "GOOGLE_API_KEY" in config["DEFAULT"]:
+                    api_key = config["DEFAULT"]["GOOGLE_API_KEY"]
+            elif os.path.exists("../config.ini"):
+                config.read("../config.ini")
+                if "DEFAULT" in config and "GOOGLE_API_KEY" in config["DEFAULT"]:
+                    api_key = config["DEFAULT"]["GOOGLE_API_KEY"]
+        except:
+            # Ignore any errors with config parsing
+            pass
+    
+    # If still not found, raise error
     if not api_key:
         raise ValueError(
-            "GOOGLE_API_KEY environment variable not set. "
-            "Please set it with your Google API key."
+            "GOOGLE_API_KEY not found. Please provide it by one of these methods:\n"
+            "1. Set the GOOGLE_API_KEY environment variable\n"
+            "2. Create a .env file with GOOGLE_API_KEY=your_key\n"
+            "3. Create a config.ini file with [DEFAULT] section and GOOGLE_API_KEY=your_key\n"
+            "\nTo use .env files, install python-dotenv: pip install python-dotenv"
         )
+    
     return api_key
 
 def retry_with_exponential_backoff(
