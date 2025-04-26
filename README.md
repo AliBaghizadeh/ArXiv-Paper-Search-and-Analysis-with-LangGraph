@@ -55,11 +55,41 @@ pip install -r requirements.txt
 
 3. Set up your Google API key:
    - Get a Google API key for Gemini from [Google AI Studio](https://ai.google.dev/)
-   - Set your API key as an environment variable:
+   - You have several options to provide your API key:
+   
+   a) Using a .env file (recommended):
    ```
+   # Install python-dotenv if not already installed
+   pip install python-dotenv
+   
+   # Create a .env file in the project root directory
+   echo "GOOGLE_API_KEY=your_api_key_here" > .env
+   ```
+   
+   b) Set as an environment variable:
+   ```
+   # Linux/MacOS
    export GOOGLE_API_KEY="your_api_key_here"
+   
+   # Windows PowerShell
+   $env:GOOGLE_API_KEY="your_api_key_here"
+   
+   # Windows Command Prompt
+   set GOOGLE_API_KEY=your_api_key_here
    ```
-   - Or add it directly in the notebook (not recommended for shared environments)
+   
+   c) Using a config.ini file:
+   ```
+   [DEFAULT]
+   GOOGLE_API_KEY=your_api_key_here
+   ```
+   
+   d) Pass directly to scripts (not recommended for shared environments):
+   ```
+   python scripts/run_search.py --api-key "your_api_key_here" "your query here"
+   ```
+
+   > **Security Note**: Never commit your actual API key to Git. The .env file is in .gitignore to prevent accidentally sharing your credentials. Use the provided .env.example file as a template.
 
 4. Launch Jupyter notebook:
 ```
@@ -67,6 +97,18 @@ jupyter notebook
 ```
 
 5. Open `web_search_final.ipynb` and run the cells
+
+## Running Scripts
+
+You can use the command-line scripts to search directly:
+
+```
+# Run the main search script
+python scripts/run_search.py "your research query here"
+
+# Or try the simple example
+python examples/simple_search.py "your research query here"
+```
 
 ## Usage
 
@@ -111,6 +153,7 @@ The notebook includes several customizable parameters:
   - beautifulsoup4
   - chromadb
   - ipython
+  - python-dotenv
 
 ## License
 
