@@ -49,3 +49,6 @@ cache/
 
 # Vector database
 *.chroma/ 
+
+chroma_db/
+chroma_db\
