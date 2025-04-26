@@ -1,6 +1,6 @@
 # ArXiv Paper Search and Analysis with LangGraph
 
-This project provides an advanced research tool that uses LangGraph workflow and Gemini AI to search ArXiv papers, expand queries, and analyze research papers. It was developed as part of the Google 5-Day GenAI Intensive Course.
+This project provides an advanced research tool that uses LangGraph workflow and Gemini AI to search ArXiv papers, expand queries, and analyze research papers. It was developed as part of the **[Google 5-Day GenAI Intensive Course](https://rsvp.withgoogle.com/events/google-generative-ai-intensive_2025q1)**.
 
 ## Features
 
@@ -44,7 +44,7 @@ This project provides an advanced research tool that uses LangGraph workflow and
 
 1. Clone this repository:
 ```
-git clone https://github.com/your-username/arxiv-search-analysis.git
+git clone https://github.com/AliBaghizadeh/ArXiv-Paper-Search-and-Analysis-with-LangGraph.git
 cd arxiv-search-analysis
 ```
 
