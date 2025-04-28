@@ -40,6 +40,36 @@ This project provides an advanced research tool that uses LangGraph workflow and
 - Includes direct links to original papers on arXiv
 - Simple interface for entering research queries and viewing results
 
+## Project Structure
+
+```
+arxiv-search-github/
+├── arxiv_search/               # Main package
+│   ├── __init__.py
+│   ├── data_collection.py      # ArXiv API and paper content extraction
+│   ├── langgraph_workflow.py   # LangGraph workflow implementation
+│   ├── query_expansion.py      # Query enhancement functionality
+│   ├── utils.py                # Helper functions
+│   └── vector_search.py        # Vector search implementation
+├── chroma_db/                  # Vector database storage
+├── docs/                       # Documentation
+│   └── usage_guide.md          # Detailed usage instructions
+├── examples/                   # Example scripts
+│   └── simple_search.py        # Simple example implementation
+├── scripts/                    # Command-line scripts
+│   └── run_search.py           # Main script for running searches
+├── tests/                      # Unit tests
+│   ├── __init__.py
+│   ├── test_data_collection.py # Tests for data collection module
+│   └── test_query_expansion.py # Tests for query expansion module
+├── .git/                       # Git repository
+├── .gitignore                  # Git ignore file
+├── LICENSE                     # Project license
+├── README.md                   # This file
+├── requirements.txt            # Project dependencies
+└── setup.py                    # Package setup script
+```
+
 ## Setup
 
 1. Clone this repository:
@@ -164,4 +194,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Google 5-Day GenAI Intensive Course
 - ArXiv API for providing access to research papers
 - LangGraph for workflow implementation
-- Google Generative AI for model access 
+- Google Generative AI for model access
